@@ -27,7 +27,7 @@ public class OrderController {
     @GetMapping("{orderId}")
     public Order queryOrderByUserId(@PathVariable("orderId") Long orderId) {
         Order order = orderMapper.findById(orderId);
-        String url = "http://localhost:8081/user/" + order.getUserId();
+        String url = "http://userserver/user/" + order.getUserId();
         User user = restTemplate.getForObject(url, User.class);
         order.setUser(user);
         // 根据id查询订单并返回
